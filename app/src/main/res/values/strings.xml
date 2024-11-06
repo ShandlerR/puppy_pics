@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Dog Image Search</string>
+    <string name="search_for_image">Find a Puppy</string>
+</resources>
