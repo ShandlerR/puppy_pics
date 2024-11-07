@@ -9,20 +9,16 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -59,13 +55,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DogImageSearch(modifier: Modifier = Modifier) {
     val imageDirectory: Map<String, List<Int>> = mapOf(
-        "kahlsee" to listOf(
+        "khaleesi" to listOf(
             R.drawable.kahlsee0,
             R.drawable.kahlsee1,
             R.drawable.kahlsee2,
             R.drawable.kahlsee3
         ),
-        "qbert" to listOf(
+        "qubert" to listOf(
             R.drawable.qbert0,
             R.drawable.qbert1
         )
@@ -95,7 +91,6 @@ fun DogImageSearch(modifier: Modifier = Modifier) {
                 )
             }
         }
-// Continue Refactor From here
         Surface(
             border = BorderStroke(1.dp, Color.Black),
             color = Color(225, 226, 236),
@@ -151,14 +146,12 @@ fun BigButton(@DrawableRes iconResource: Int, onClick: () -> Unit) {
     Returns a list of any close matching IDs from the directory.
  */
 @VisibleForTesting
-internal fun findCloseInDirectory(term: String, directory: Map<String, List<Int>>): List<Int> {
-
-    if(term == "") {
-        val allImageIds: List<Int> = directory.values.flatten()
-        return allImageIds
+internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, List<Int>>): Map<String, List<Int>> {
+    if (searchTerm == "") {
+        return directory
     }
 
-    return listOf()
+    return mapOf()
 }
 
 @Preview(showBackground = true)

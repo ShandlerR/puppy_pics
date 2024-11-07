@@ -1,7 +1,7 @@
 package com.example.dogimagesearch
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.Assert.*
 
 class DogImageSearchTest {
 
@@ -10,17 +10,36 @@ class DogImageSearchTest {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),
-            "Cats" to listOf(4,5,6)
+            "Cats" to listOf(4,5,6),
+            "Birds" to listOf(7,8,9,10)
         )
+
         var searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
 
         //verify
-        assertEquals(searchTerm, "")
-        assertEquals(result, listOf(1,2,3,4,5,6))
+        assertEquals(directory, result)
+        //teardown
+    }
 
+    fun emptySpacesInEmptyTerm()
+    {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6),
+            "Birds" to listOf(7,8,9,10)
+        )
+
+        var searchTerm = "  "
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+        assertEquals(directory, result)
         //teardown
     }
 
@@ -154,6 +173,116 @@ class DogImageSearchTest {
     }
 
     fun extraLettersInTerm_end() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun singleSpaceInTerm_start() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun singleSpaceInTerm_end() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun singleSpaceInTerm_middle() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun doubleSpaceInTerm_start() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+    fun doubleSpaceInTerm_end() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+    fun doubleSpaceInTerm_middle() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun doubleSpaceInTerm_random() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),
