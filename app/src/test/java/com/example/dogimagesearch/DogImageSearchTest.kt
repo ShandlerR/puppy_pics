@@ -14,7 +14,7 @@ class DogImageSearchTest {
             "Birds" to listOf(7,8,9,10)
         )
 
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -34,7 +34,7 @@ class DogImageSearchTest {
             "Birds" to listOf(7,8,9,10)
         )
 
-        var searchTerm = "  "
+        val searchTerm = "  "
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -50,7 +50,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = "do"
+        val searchTerm = "do"
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -66,7 +66,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = "Do"
+        val searchTerm = "Do"
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -82,7 +82,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = "Do"
+        val searchTerm = "Do"
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -98,7 +98,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = "do"
+        val searchTerm = "do"
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -114,7 +114,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = "Do"
+        val searchTerm = "Do"
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -130,7 +130,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = "Do"
+        val searchTerm = "Do"
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -146,7 +146,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -162,7 +162,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -179,7 +179,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -195,7 +195,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -211,7 +211,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -228,7 +228,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -244,7 +244,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -260,7 +260,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -276,7 +276,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -292,7 +292,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -308,7 +308,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -324,7 +324,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -340,7 +340,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -355,7 +355,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -370,7 +370,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -386,7 +386,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -402,7 +402,7 @@ class DogImageSearchTest {
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
-        var searchTerm = ""
+        val searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
