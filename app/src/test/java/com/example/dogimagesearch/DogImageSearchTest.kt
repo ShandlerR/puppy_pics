@@ -24,6 +24,7 @@ class DogImageSearchTest {
         //teardown
     }
 
+    @Test
     fun emptySpacesInEmptyTerm()
     {
         //setup
@@ -43,7 +44,23 @@ class DogImageSearchTest {
         //teardown
     }
 
-    fun halfTermInDirectory_lowercase() {
+    fun halfTermInDirectory_lowercaseTerm_lowercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = "do"
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun halfTermInDirectory_capitalTerm_lowercaseDirectory() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),
@@ -59,7 +76,7 @@ class DogImageSearchTest {
         //teardown
     }
 
-    fun halfTermInDirectory_capital() {
+    fun halfTermInDirectory_mixedTerm_lowercaseDirectory() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),
@@ -75,13 +92,143 @@ class DogImageSearchTest {
         //teardown
     }
 
-    fun halfTermInDirectory_mixed() {
+    fun halfTermInDirectory_lowercaseTerm_uppercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = "do"
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun halfTermInDirectory_capitalTerm_uppercaseDirectory() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),
             "Cats" to listOf(4,5,6)
         )
         var searchTerm = "Do"
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun halfTermInDirectory_mixedTerm_uppercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = "Do"
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun fullTermInDirectory_lowercaseTerm_lowercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun fullTermInDirectory_uppercaseTerm_lowercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+
+    fun fullTermInDirectory_mixedTerm_lowercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun fullTermInDirectory_lowercaseTerm_uppercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+    fun fullTermInDirectory_uppercaseTerm_uppercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+
+        //teardown
+    }
+
+
+    fun fullTermInDirectory_mixedTerm_uppercaseDirectory() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Dogs" to listOf(1,2,3),
+            "Cats" to listOf(4,5,6)
+        )
+        var searchTerm = ""
 
         //exercise
         val result = findCloseInDirectory(searchTerm, directory)
@@ -92,55 +239,6 @@ class DogImageSearchTest {
     }
 
     fun termNotInDirectory() {
-        //setup
-        val directory: Map<String, List<Int>> = mapOf(
-            "Dogs" to listOf(1,2,3),
-            "Cats" to listOf(4,5,6)
-        )
-        var searchTerm = ""
-
-        //exercise
-        val result = findCloseInDirectory(searchTerm, directory)
-
-        //verify
-
-        //teardown
-    }
-
-    fun fullTermInDirectory_lower() {
-        //setup
-        val directory: Map<String, List<Int>> = mapOf(
-            "Dogs" to listOf(1,2,3),
-            "Cats" to listOf(4,5,6)
-        )
-        var searchTerm = ""
-
-        //exercise
-        val result = findCloseInDirectory(searchTerm, directory)
-
-        //verify
-
-        //teardown
-    }
-
-    fun fullTermInDirectory_capital() {
-        //setup
-        val directory: Map<String, List<Int>> = mapOf(
-            "Dogs" to listOf(1,2,3),
-            "Cats" to listOf(4,5,6)
-        )
-        var searchTerm = ""
-
-        //exercise
-        val result = findCloseInDirectory(searchTerm, directory)
-
-        //verify
-
-        //teardown
-    }
-
-
-    fun fullTermInDirectory_mixed() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),
