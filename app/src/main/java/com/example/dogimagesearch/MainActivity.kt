@@ -147,14 +147,14 @@ fun BigButton(@DrawableRes iconResource: Int, onClick: () -> Unit) {
  */
 @VisibleForTesting
 internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, List<Int>>): Map<String, List<Int>> {
-
-    val cleanedSearchTerm = searchTerm.replace(" ", "")
-
+    val cleanedSearchTerm = searchTerm.replace(" ", "").lowercase()
     if (cleanedSearchTerm == "") {
         return directory
     }
 
-    return mapOf()
+    return directory.filterKeys { it.lowercase().contains(cleanedSearchTerm) }
+
+//    return mapOf()
 }
 
 @Preview(showBackground = true)
