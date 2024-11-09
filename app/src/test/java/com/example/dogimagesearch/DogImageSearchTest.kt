@@ -475,4 +475,8 @@ class DogImageSearchTest {
     fun oneTermMultipleKeys_lowercaseTerm_uppercaseDirectory() {
 
     }
+
+    // ways to mess with the term
+
+    // ways to mess with the dictionary
 }
