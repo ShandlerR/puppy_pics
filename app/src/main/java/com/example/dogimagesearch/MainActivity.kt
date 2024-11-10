@@ -46,26 +46,27 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DogImageSearchTheme {
-                DogImageSearch()
+                DogImageSearch(
+                    mapOf(
+                        "khaleesi" to listOf(
+                            R.drawable.kahlsee0,
+                            R.drawable.kahlsee1,
+                            R.drawable.kahlsee2,
+                            R.drawable.kahlsee3
+                        ),
+                        "qubert" to listOf(
+                            R.drawable.qbert0,
+                            R.drawable.qbert1
+                        )
+                    )
+                )
             }
         }
     }
 }
 
 @Composable
-fun DogImageSearch(modifier: Modifier = Modifier) {
-    val imageDirectory: Map<String, List<Int>> = mapOf(
-        "khaleesi" to listOf(
-            R.drawable.kahlsee0,
-            R.drawable.kahlsee1,
-            R.drawable.kahlsee2,
-            R.drawable.kahlsee3
-        ),
-        "qubert" to listOf(
-            R.drawable.qbert0,
-            R.drawable.qbert1
-        )
-    )
+fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = Modifier) {
     var searchTerm by remember {
         mutableStateOf("")
     }
@@ -161,6 +162,19 @@ internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, Lis
 @Composable
 fun DogPreview() {
     DogImageSearchTheme {
-        DogImageSearch()
+        DogImageSearch(
+            mapOf(
+                "khaleesi" to listOf(
+                    R.drawable.kahlsee0,
+                    R.drawable.kahlsee1,
+                    R.drawable.kahlsee2,
+                    R.drawable.kahlsee3
+                ),
+                "qubert" to listOf(
+                    R.drawable.qbert0,
+                    R.drawable.qbert1
+                )
+            )
+        )
     }
 }
