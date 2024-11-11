@@ -158,6 +158,15 @@ internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, Lis
 //    return mapOf()
 }
 
+@VisibleForTesting
+internal fun findNameAndImageByIndex(
+    index: Int,
+    directory: Map<String, List<Int>>,
+    unknownParas: Pair<String, Int> = Pair("Unknown", R.drawable.failed_search)
+): Pair<String, Int> {
+    return unknownParas
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DogPreview() {

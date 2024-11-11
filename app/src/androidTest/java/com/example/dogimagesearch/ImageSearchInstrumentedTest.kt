@@ -1,7 +1,9 @@
 package com.example.dogimagesearch
 
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performTextInput
 import com.example.dogimagesearch.ui.theme.DogImageSearchTheme
 import org.junit.Rule
 import org.junit.Test
@@ -9,7 +11,7 @@ import org.junit.Test
 class ImageSearchInstrumentedTest {
     @get:Rule
     val composeTestRule = createComposeRule()
-    val directory = mapOf(
+    private val directory = mapOf(
         "khaleesi" to listOf(
             R.drawable.kahlsee0,
             R.drawable.kahlsee1,
@@ -39,13 +41,20 @@ class ImageSearchInstrumentedTest {
         //teardown
     }
 
+    @Test
     fun halfTermSearch() {
         //setup
-
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
         //exercise
-
+        composeTestRule.onNodeWithText("Find a Puppy")
+            .performTextInput("Qub")
         //verify
-
+        composeTestRule.onNodeWithText("Qubert")
+            .assertExists("No Node with this text was found")
         //teardown
     }
 

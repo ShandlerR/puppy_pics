@@ -3,7 +3,7 @@ package com.example.dogimagesearch
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class DogImageSearchTest {
+class FindTermInDirectoryTests {
 
     @Test
     fun emptyTermSearch() {
