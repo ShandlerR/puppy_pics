@@ -154,8 +154,6 @@ internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, Lis
     }
 
     return directory.filterKeys { it.lowercase().contains(cleanedSearchTerm) }
-
-//    return mapOf()
 }
 
 @VisibleForTesting
