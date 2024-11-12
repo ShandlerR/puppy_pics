@@ -1,6 +1,5 @@
 package com.example.dogimagesearch
 
-import android.util.Log
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -11,20 +10,53 @@ class FindDataByIndex {
         //setup
         val index = 0
         val directory: Map<String, List<Int>> = mapOf(
-            "A" to listOf(1,2,3),
-            "B" to listOf(4,5,6)
+            "A" to listOf(5,7,10),
+            "B" to listOf(19,14,0)
         )
 
         //exercise
         val result = findNameAndImageByIndex(index, directory)
 
         //verify
-        val expected: Pair<String, Int> = Pair("A", 1)
+        val expected: Pair<String, Int> = Pair("A", 5)
         assertEquals(expected, result)
         //teardown
     }
-    fun findEndInFirstList() { }
-    fun findStartInSecondList() { }
+
+    @Test
+    fun findEndInFirstList() {
+        //setup
+        val index = 2
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(5,7,10),
+            "B" to listOf(19,14,0)
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("A", 10)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    fun findStartInSecondList() {
+        //setup
+        val index = 3
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(5,7,10),
+            "B" to listOf(19,14,0)
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("B", 19)
+        assertEquals(expected, result)
+        //teardown
+    }
     fun findEndInSecondList() { }
     fun findEmptyResult_firstList() { }
     fun negativeIndex() { }
@@ -40,8 +72,8 @@ class FindDataByIndex {
         //setup
         val index = 0
         val directory: Map<String, List<Int>> = mapOf(
-            "A" to listOf(1,2,3),
-            "B" to listOf(4,5,6)
+            "A" to listOf(5,7,10),
+            "B" to listOf(19,14,0)
         )
 
         //exercise

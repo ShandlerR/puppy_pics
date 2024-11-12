@@ -162,13 +162,10 @@ internal fun findNameAndImageByIndex(
     directory: Map<String, List<Int>>,
     unknownParas: Pair<String, Int> = Pair("Unknown Dog", R.drawable.failed_search)
 ): Pair<String, Int> {
-    // Find the key that contains the index O(Log N)
+    val name = directory.keys.first()
+    val image = directory.values.elementAt(0)[index]
 
-    val key = directory.keys.first()
-    val value = directory.values.elementAt(0)[0]
-
-    // Return the Key-value pair based on offset O(1)
-    return Pair(key, value)
+    return Pair(name, image)
 }
 
 @Preview(showBackground = true)
