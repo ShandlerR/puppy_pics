@@ -160,9 +160,15 @@ internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, Lis
 internal fun findNameAndImageByIndex(
     index: Int,
     directory: Map<String, List<Int>>,
-    unknownParas: Pair<String, Int> = Pair("Unknown", R.drawable.failed_search)
+    unknownParas: Pair<String, Int> = Pair("Unknown Dog", R.drawable.failed_search)
 ): Pair<String, Int> {
-    return unknownParas
+    // Find the key that contains the index O(Log N)
+
+    val key = directory.keys.first()
+    val value = directory.values.elementAt(0)[0]
+
+    // Return the Key-value pair based on offset O(1)
+    return Pair(key, value)
 }
 
 @Preview(showBackground = true)
