@@ -168,8 +168,8 @@ internal fun findNameAndImageByIndex(
 
     // negative index or index within range
     for((name, imageList) in directory) {
-        if(imageList.size + totalIndexesPassed > index) {
-            val tempName = name.ifBlank { unknownParas.first } // If the name is unknown pass the variable
+        if(imageList.size + totalIndexesPassed > index && imageList.isNotEmpty()) {
+            val tempName = name.ifBlank { unknownParas.first } // If the name is empty, use default value
             return Pair(tempName, imageList[(index - totalIndexesPassed).coerceAtLeast(0)])
 
         } else {

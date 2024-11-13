@@ -203,13 +203,113 @@ class FindDataByIndex {
         //teardown
     }
 
-    fun middleListEmpty() { }
+    @Test
+    fun middleListEmpty_safeSkip() {
+        //setup
+        val index = 4
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(5,7,10),
+            "B" to listOf(),
+            "C" to listOf(5,2,4)
+        )
 
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("C", 2)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
+    fun middleListEmpty_barelySkipped() {
+        //setup
+        val index = 3
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(5,7,10),
+            "B" to listOf(),
+            "C" to listOf(5,2,4)
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("C", 5)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
     fun emptyMap() {
+        //setup
+        val index = 5
+        val directory: Map<String, List<Int>> = mapOf()
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory, Pair("Random Dog", 2001))
+
+        //verify
+        val expected: Pair<String, Int> = Pair("Random Dog", 2001)
+        assertEquals(expected, result)
+        //teardown
         // 5th position
     }
-    fun bothEmptyLists() { }
 
+    @Test
+    fun bothEmptyLists_start() {
+        //setup
+        val index = 0
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(),
+            "B" to listOf()
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory, Pair("Random Dog", 2001))
+
+        //verify
+        val expected: Pair<String, Int> = Pair("Random Dog", 2001)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
+    fun bothEmptyLists_negative() {
+        //setup
+        val index = -1
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(),
+            "B" to listOf()
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory, Pair("Random Dog", 2001))
+
+        //verify
+        val expected: Pair<String, Int> = Pair("Random Dog", 2001)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
+    fun bothEmptyLists_overflow() {
+        //setup
+        val index = 5
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(),
+            "B" to listOf()
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory, Pair("Random Dog", 2001))
+
+        //verify
+        val expected: Pair<String, Int> = Pair("Random Dog", 2001)
+        assertEquals(expected, result)
+        //teardown
+    }
     /*
         //setup
         val index = 0
