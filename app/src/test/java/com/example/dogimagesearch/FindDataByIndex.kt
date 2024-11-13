@@ -148,8 +148,60 @@ class FindDataByIndex {
         assertEquals(expected, result)
         //teardown
     }
-    fun firstListEmpty() { }
-    fun secondListEmpty_overflow() { }
+
+    @Test
+    fun firstListEmpty_start() {
+        //setup
+        val index = 0
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(),
+            "B" to listOf(19,14,2)
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("B", 19)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
+    fun firstListEmpty_overflow() {
+        //setup
+        val index = 10
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(),
+            "B" to listOf(19,14,2)
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("B", 2)
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
+    fun secondListEmpty_overflow() {
+        //setup
+        val index = 7
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(5,7,10),
+            "B" to listOf()
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("A", 10)
+        assertEquals(expected, result)
+        //teardown
+    }
     fun emptyMap() {
         // 5th position
     }
