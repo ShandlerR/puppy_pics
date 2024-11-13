@@ -41,6 +41,7 @@ class FindDataByIndex {
         //teardown
     }
 
+    @Test
     fun findStartInSecondList() {
         //setup
         val index = 3
@@ -57,7 +58,24 @@ class FindDataByIndex {
         assertEquals(expected, result)
         //teardown
     }
-    fun findEndInSecondList() { }
+
+    @Test
+    fun findEndInSecondList() {
+        //setup
+        val index = 5
+        val directory: Map<String, List<Int>> = mapOf(
+            "A" to listOf(5,7,10),
+            "B" to listOf(19,14,2)
+        )
+
+        //exercise
+        val result = findNameAndImageByIndex(index, directory)
+
+        //verify
+        val expected: Pair<String, Int> = Pair("B", 2)
+        assertEquals(expected, result)
+        //teardown
+    }
     fun findEmptyResult_firstList() { }
     fun negativeIndex() { }
     fun overflowSearch() { }
@@ -73,7 +91,7 @@ class FindDataByIndex {
         val index = 0
         val directory: Map<String, List<Int>> = mapOf(
             "A" to listOf(5,7,10),
-            "B" to listOf(19,14,0)
+            "B" to listOf(19,14,2)
         )
 
         //exercise

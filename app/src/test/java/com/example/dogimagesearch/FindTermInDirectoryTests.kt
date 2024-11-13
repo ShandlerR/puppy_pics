@@ -24,8 +24,7 @@ class FindTermInDirectoryTests {
     }
 
     @Test
-    fun emptySpacesInEmptyTerm()
-    {
+    fun emptySpacesInEmptyTerm() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(
             "Dogs" to listOf(1,2,3),

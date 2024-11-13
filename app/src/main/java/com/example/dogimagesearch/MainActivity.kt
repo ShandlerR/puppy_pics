@@ -162,10 +162,21 @@ internal fun findNameAndImageByIndex(
     directory: Map<String, List<Int>>,
     unknownParas: Pair<String, Int> = Pair("Unknown Dog", R.drawable.failed_search)
 ): Pair<String, Int> {
+    var tempIndex = 0
+
+    for((name, imageList) in directory) {
+        if(imageList.size + tempIndex > index) {
+            tempIndex = index - tempIndex
+            return Pair(name, imageList[tempIndex])
+        } else {
+            tempIndex += imageList.size
+        }
+    }
+/*
     val name = directory.keys.first()
     val image = directory.values.elementAt(0)[index]
-
-    return Pair(name, image)
+*/
+    return unknownParas
 }
 
 @Preview(showBackground = true)
