@@ -202,6 +202,9 @@ class FindDataByIndex {
         assertEquals(expected, result)
         //teardown
     }
+
+    fun middleListEmpty() { }
+
     fun emptyMap() {
         // 5th position
     }

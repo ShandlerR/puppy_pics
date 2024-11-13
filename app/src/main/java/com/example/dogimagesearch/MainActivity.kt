@@ -162,21 +162,27 @@ internal fun findNameAndImageByIndex(
     directory: Map<String, List<Int>>,
     unknownParas: Pair<String, Int> = Pair("Unknown Dog", R.drawable.failed_search)
 ): Pair<String, Int> {
-    var tempIndex = 0
+    var totalIndexesPassed = 0
+    var lastSafeName = unknownParas.first
+    var lastSafeImage = unknownParas.second
 
     // negative index or index within range
     for((name, imageList) in directory) {
-        if(imageList.size + tempIndex > index) {
-            val tempName = name.ifBlank { unknownParas.first }
-            tempIndex = (index - tempIndex).coerceAtLeast(0)
-            return Pair(tempName, imageList[tempIndex])
+        if(imageList.size + totalIndexesPassed > index) {
+            val tempName = name.ifBlank { unknownParas.first } // If the name is unknown pass the variable
+            return Pair(tempName, imageList[(index - totalIndexesPassed).coerceAtLeast(0)])
+
         } else {
-            tempIndex += imageList.size
+            totalIndexesPassed += imageList.size
+            if (imageList.isNotEmpty()) {
+                lastSafeName = name
+                lastSafeImage = imageList.last()
+            }
         }
     }
 
     // index out of range - overflow
-    return Pair(directory.keys.last(), directory.values.last().last())
+    return Pair(lastSafeName, lastSafeImage)
 }
 
 @Preview(showBackground = true)
