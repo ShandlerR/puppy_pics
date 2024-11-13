@@ -164,19 +164,19 @@ internal fun findNameAndImageByIndex(
 ): Pair<String, Int> {
     var tempIndex = 0
 
+    // negative index or index within range
     for((name, imageList) in directory) {
         if(imageList.size + tempIndex > index) {
-            tempIndex = index - tempIndex
-            return Pair(name, imageList[tempIndex])
+            val tempName = name.ifBlank { unknownParas.first }
+            tempIndex = (index - tempIndex).coerceAtLeast(0)
+            return Pair(tempName, imageList[tempIndex])
         } else {
             tempIndex += imageList.size
         }
     }
-/*
-    val name = directory.keys.first()
-    val image = directory.values.elementAt(0)[index]
-*/
-    return unknownParas
+
+    // index out of range - overflow
+    return Pair(directory.keys.last(), directory.values.last().last())
 }
 
 @Preview(showBackground = true)
