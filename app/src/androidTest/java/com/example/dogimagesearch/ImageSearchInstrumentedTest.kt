@@ -1,8 +1,12 @@
 package com.example.dogimagesearch
 
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performKeyPress
 import androidx.compose.ui.test.performTextInput
 import com.example.dogimagesearch.ui.theme.DogImageSearchTheme
 import org.junit.Rule
@@ -27,7 +31,7 @@ class ImageSearchInstrumentedTest {
     // Cover the big stuff
 
     @Test
-    fun noSearch() {
+    fun noSearch_start() {
         //setup
         composeTestRule.setContent {
             DogImageSearchTheme {
@@ -37,12 +41,16 @@ class ImageSearchInstrumentedTest {
         //exercise
         //verify
         composeTestRule.onNodeWithText("Khaleesi")
-            .assertExists("No Node with this text was found")
+            .assertExists("No Node with the name 'Khaleesi' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsNotEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsEnabled()
         //teardown
     }
 
     @Test
-    fun halfTermSearch() {
+    fun singleNextPress() {
         //setup
         composeTestRule.setContent {
             DogImageSearchTheme {
@@ -50,71 +58,76 @@ class ImageSearchInstrumentedTest {
             }
         }
         //exercise
+        composeTestRule.onNodeWithTag("front")
+            .performClick()
+        //verify
+        composeTestRule.onNodeWithText("Khaleesi")
+            .assertExists("No Node with the name 'Khaleesi' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsEnabled()
+        //teardown
+    }
+
+    @Test
+    fun noSearch_end() {
+        //setup
+        val directory = mapOf(
+            "khaleesi" to listOf(
+                R.drawable.kahlsee0,
+                R.drawable.kahlsee2
+            )
+        )
+
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+
+        //exercise
+        composeTestRule.onNodeWithTag("front")
+            .performClick()
+        //verify
+        composeTestRule.onNodeWithText("Khaleesi")
+            .assertExists("No Node with the name 'Khaleesi' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsNotEnabled()
+        //teardown
+    }
+
+    fun halfTermSearch_start() {
+        //setup
+        val textInput = "Qub"
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
         composeTestRule.onNodeWithText("Find a Puppy")
-            .performTextInput("Qub")
+            .performTextInput(textInput)
         //verify
         composeTestRule.onNodeWithText("Qubert")
-            .assertExists("No Node with this text was found")
+            .assertExists("No Node with the name '$textInput' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsNotEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsEnabled()
         //teardown
     }
 
-    fun fullTermSearch() {
-        //setup
+    fun halfTermSearch_end() { }
 
-        //exercise
+    fun weirdSpaces() { }
 
-        //verify
+    fun noRelatedDog_filledDictionary() { }
 
-        //teardown
-    }
+    fun emptyDictionaryResult() { }
 
-    fun nextButton_start() {
-        //setup
+    fun noNameDogInDirectory() { }
 
-        //exercise
-
-        //verify
-
-        //teardown
-    }
-
-    fun nextButton_end() {
-        //setup
-
-        //exercise
-
-        //verify
-
-        //teardown
-    }
-
-    fun previousButton_mid() {
-        //setup
-
-        //exercise
-
-        //verify
-
-        //teardown
-    }
-
-    fun previousButton_start() {
-        //setup
-
-        //exercise
-
-        //verify
-
-        //teardown
-    }
-
-    fun noResultImageSearch() {
-        //setup
-
-        //exercise
-
-        //verify
-
-        //teardown
-    }
 }

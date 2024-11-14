@@ -533,6 +533,47 @@ class FindTermInDirectoryTests {
     }
 
     @Test
+    fun halfTermInDirectory_spacesInDirectory_spaceTerm() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Do gs" to listOf(1,2,3),
+            "Ca ts" to listOf(4,5,6)
+        )
+        val searchTerm = "d og"
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+        val expected: Map<String, List<Int>> = mapOf(
+            "Do gs" to listOf(1,2,3)
+        )
+        assertEquals(expected, result)
+        //teardown
+    }
+
+    @Test
+    fun spacesInDirectory_noSpaceTerm() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf(
+            "Do gs" to listOf(1,2,3),
+            "Ca ts" to listOf(4,5,6)
+        )
+        val searchTerm = "dog"
+
+        //exercise
+        val result = findCloseInDirectory(searchTerm, directory)
+
+        //verify
+        val expected: Map<String, List<Int>> = mapOf(
+            "Do gs" to listOf(1,2,3)
+        )
+        assertEquals(expected, result)
+        //teardown
+    }
+
+
+    @Test
     fun multipleKeysShareSameValues_singleResult() {
         //setup
         val directory: Map<String, List<Int>> = mapOf(

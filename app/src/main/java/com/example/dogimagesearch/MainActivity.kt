@@ -23,13 +23,16 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -67,12 +70,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = Modifier) {
+    var index by remember { mutableIntStateOf(0) }
     var searchTerm by remember {
         mutableStateOf("")
     }
-
     val searchResult = findCloseInDirectory(searchTerm, imageDirectory)
+    val nameAndImage = findNameAndImageByIndex(index, searchResult)
 
+    var backEnabled by remember { mutableStateOf(false) }
+    var frontEnabled by remember { mutableStateOf(true) }
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -86,7 +92,7 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
                 shadowElevation = 10.dp
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.kahlsee1),
+                    painter = painterResource(id = nameAndImage.second),
                     contentDescription = null,
                     modifier = Modifier.padding(32.dp)
                 )
@@ -98,7 +104,7 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
-                text = "Khaleesi",
+                text = nameAndImage.first.lowercase().replaceFirstChar { it.uppercase() },
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -118,12 +124,21 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
 
         Row (horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             
-            BigButton(R.drawable.arrow_back) {
-                Log.i(null, "Click Me Backward!")
+            BigButton(
+                iconResource = R.drawable.arrow_back,
+                enabled = backEnabled,
+                modifier = modifier.testTag("back")
+            ) {
+                index--
             }
 
-            BigButton(R.drawable.arrow_front) {
-                Log.i(null, "Click Me Forward!")
+            BigButton(
+                iconResource = R.drawable.arrow_front,
+                enabled = frontEnabled,
+                modifier = modifier.testTag("front")
+            ) {
+                backEnabled = true
+                index++
             }
         }
 
@@ -131,10 +146,13 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
 }
 
 @Composable
-fun BigButton(@DrawableRes iconResource: Int, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-    ) {
+fun BigButton(
+    @DrawableRes iconResource: Int,
+    enabled: Boolean,
+    modifier: Modifier,
+    onClick: () -> Unit
+) {
+    Button(enabled = enabled ,onClick = onClick, modifier = modifier) {
         Icon(
             painter = painterResource(id = iconResource),
             contentDescription = null,
@@ -153,7 +171,10 @@ internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, Lis
         return directory
     }
 
-    return directory.filterKeys { it.lowercase().contains(cleanedSearchTerm) }
+    return directory.filterKeys {
+        val cleanedKey = it.replace(" ", "").lowercase()
+        cleanedKey.contains(cleanedSearchTerm)
+    }
 }
 
 @VisibleForTesting
