@@ -1,7 +1,6 @@
 package com.example.dogimagesearch
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -23,7 +22,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -77,8 +75,9 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
     val searchResult = findCloseInDirectory(searchTerm, imageDirectory)
     val nameAndImage = findNameAndImageByIndex(index, searchResult)
 
-    var backEnabled by remember { mutableStateOf(false) }
-    var frontEnabled by remember { mutableStateOf(true) }
+    val backEnabled = !isFirstImage(nameAndImage, searchResult)
+    val frontEnabled = !isLastImage(nameAndImage, searchResult)
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -137,7 +136,6 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
                 enabled = frontEnabled,
                 modifier = modifier.testTag("front")
             ) {
-                backEnabled = true
                 index++
             }
         }
@@ -177,11 +175,16 @@ internal fun findCloseInDirectory(searchTerm: String, directory: Map<String, Lis
     }
 }
 
+/*
+    given an index, returns the key and value associated with that index as if the Map was a List.
+    returns the last element if overflows, returns the first element if negative.
+    Returns unknown params if the directory is empty, or an error occurs.
+*/
 @VisibleForTesting
 internal fun findNameAndImageByIndex(
     index: Int,
     directory: Map<String, List<Int>>,
-    unknownParas: Pair<String, Int> = Pair("Unknown Dog", R.drawable.failed_search)
+    unknownParas: Pair<String, Int> = Pair("unknown dog", R.drawable.failed_search)
 ): Pair<String, Int> {
     var totalIndexesPassed = 0
     var lastSafeName = unknownParas.first
@@ -204,6 +207,31 @@ internal fun findNameAndImageByIndex(
 
     // index out of range - overflow
     return Pair(lastSafeName, lastSafeImage)
+}
+
+@VisibleForTesting
+internal fun isLastImage(nameAndImage: Pair<String, Int>, directory: Map<String, List<Int>>): Boolean {
+    val name = nameAndImage.first
+    val imageId = nameAndImage.second
+
+    if(directory.isNotEmpty()){
+        return (name == directory.keys.last() && imageId == directory.values.last().last())
+    }
+
+    //directory empty
+    return true
+}
+
+@VisibleForTesting
+internal fun isFirstImage(nameAndImage: Pair<String, Int>, directory: Map<String, List<Int>>): Boolean {
+    val name = nameAndImage.first
+    val imageId = nameAndImage.second
+    if(directory.isNotEmpty()){
+        return (name == directory.keys.first() && imageId == directory.values.first().first())
+    }
+
+    //directory empty
+    return true
 }
 
 @Preview(showBackground = true)

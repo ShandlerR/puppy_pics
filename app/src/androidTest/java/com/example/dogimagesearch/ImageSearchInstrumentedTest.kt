@@ -6,7 +6,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performKeyPress
 import androidx.compose.ui.test.performTextInput
 import com.example.dogimagesearch.ui.theme.DogImageSearchTheme
 import org.junit.Rule
@@ -99,6 +98,7 @@ class ImageSearchInstrumentedTest {
         //teardown
     }
 
+    @Test
     fun halfTermSearch_start() {
         //setup
         val textInput = "Qub"
@@ -120,11 +120,78 @@ class ImageSearchInstrumentedTest {
         //teardown
     }
 
-    fun halfTermSearch_end() { }
+    @Test
+    fun halfTermSearch_end() {
+        //setup
+        val textInput = "Qub"
 
-    fun weirdSpaces() { }
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
+        composeTestRule.onNodeWithText("Find a Puppy")
+            .performTextInput(textInput)
+        composeTestRule.onNodeWithTag("front")
+            .performClick()
+        //verify
+        composeTestRule.onNodeWithText("Qubert")
+            .assertExists("No Node with the name '$textInput' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsNotEnabled()
+        //teardown
+    }
 
-    fun noRelatedDog_filledDictionary() { }
+    @Test
+    fun weirdSpacesInSearch() {
+        //setup
+        val textInput = "  Qu b"
+
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
+        composeTestRule.onNodeWithText("Find a Puppy")
+            .performTextInput(textInput)
+        composeTestRule.onNodeWithTag("front")
+            .performClick()
+        //verify
+        composeTestRule.onNodeWithText("Qubert")
+            .assertExists("No Node with the name '$textInput' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsNotEnabled()
+        //teardown
+    }
+
+    @Test
+    fun noRelatedDog_filledDictionary() {
+        //setup
+        val textInput = "fred"
+
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
+        composeTestRule.onNodeWithText("Find a Puppy")
+            .performTextInput(textInput)
+        //verify
+        composeTestRule.onNodeWithText("Unknown Dog")
+            .assertExists("No Node with the name 'Unknown Dog' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsNotEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsNotEnabled()
+        //teardown
+    }
 
     fun emptyDictionaryResult() { }
 
