@@ -184,7 +184,7 @@ class ImageSearchInstrumentedTest {
         composeTestRule.onNodeWithText("Find a Puppy")
             .performTextInput(textInput)
         //verify
-        composeTestRule.onNodeWithText("Unknown Dog")
+        composeTestRule.onNodeWithText("Unknown dog")
             .assertExists("No Node with the name 'Unknown Dog' was found")
         composeTestRule.onNodeWithTag("back")
             .assertIsNotEnabled()
@@ -193,8 +193,49 @@ class ImageSearchInstrumentedTest {
         //teardown
     }
 
-    fun emptyDictionaryResult() { }
+    @Test
+    fun emptyDirectoryNoSearch() {
+        //setup
+        val directory: Map<String, List<Int>> = mapOf()
 
-    fun noNameDogInDirectory() { }
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
+        //verify
+        composeTestRule.onNodeWithText("Unknown dog")
+            .assertExists("No Node with the name 'Unknown Dog' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsNotEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsNotEnabled()
+        //teardown
+    }
+
+    @Test
+    fun emptyDirectorySearch() {
+        //setup
+        val textInput = "fred"
+        val directory: Map<String, List<Int>> = mapOf()
+
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
+        composeTestRule.onNodeWithText("Find a Puppy")
+            .performTextInput(textInput)
+        //verify
+        composeTestRule.onNodeWithText("Unknown dog")
+            .assertExists("No Node with the name 'Unknown Dog' was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsNotEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsNotEnabled()
+        //teardown
+    }
 
 }
