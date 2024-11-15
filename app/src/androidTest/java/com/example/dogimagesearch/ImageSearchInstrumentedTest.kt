@@ -238,4 +238,35 @@ class ImageSearchInstrumentedTest {
         //teardown
     }
 
+    @Test
+    fun endOfListToStartOfSecond() {
+        //setup
+        val textInput = "qubert"
+
+        composeTestRule.setContent {
+            DogImageSearchTheme {
+                DogImageSearch(directory)
+            }
+        }
+        //exercise
+        repeat(times = 5) {
+            composeTestRule.onNodeWithTag("front")
+                .performClick()
+        }
+
+        composeTestRule.onNodeWithText("Find a Puppy")
+            .performTextInput(textInput)
+
+        composeTestRule.onNodeWithTag("back")
+            .performClick()
+        //verify
+        composeTestRule.onNodeWithText("Qubert")
+            .assertExists("No Node with the name $textInput was found")
+        composeTestRule.onNodeWithTag("back")
+            .assertIsNotEnabled()
+        composeTestRule.onNodeWithTag("front")
+            .assertIsEnabled()
+        //teardown
+    }
+
 }

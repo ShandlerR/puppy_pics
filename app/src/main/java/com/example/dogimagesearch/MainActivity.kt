@@ -72,6 +72,7 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
     var searchTerm by remember {
         mutableStateOf("")
     }
+
     val searchResult = findCloseInDirectory(searchTerm, imageDirectory)
     val nameAndImage = findNameAndImageByIndex(index, searchResult)
 
@@ -113,11 +114,14 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
 
         TextField(
             value = searchTerm,
-            onValueChange = { searchTerm = it },
             leadingIcon = { Icon(painter = painterResource(id = R.drawable.search), contentDescription = null) },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             singleLine = true,
             label = { Text(text = stringResource(R.string.search_for_image)) },
+            onValueChange = {
+                searchTerm = it
+                index = 0
+            },
             modifier = modifier.fillMaxWidth()
         )
 

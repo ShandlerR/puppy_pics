@@ -8,9 +8,6 @@
       <SelectionState runConfigName="ImageSearchInstrumentedTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="noRelatedDog_filledDictionary()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="emptyDictionaryResult()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -18,6 +15,9 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="emptyDirectorySearch()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="endOfListToStartOfSecond()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
