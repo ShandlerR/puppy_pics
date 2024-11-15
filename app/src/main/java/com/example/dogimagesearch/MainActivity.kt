@@ -73,8 +73,8 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
         mutableStateOf("")
     }
 
-    val searchResult = findCloseInDirectory(searchTerm, imageDirectory)
-    val nameAndImage = findNameAndImageByIndex(index, searchResult)
+    val searchResult = findCloseInDirectory(searchTerm, imageDirectory) // filters down the directory based on searchTerm
+    val nameAndImage = findNameAndImageByIndex(index, searchResult) // returns the name and image id associated with index
 
     val backEnabled = !isFirstImage(nameAndImage, searchResult)
     val frontEnabled = !isLastImage(nameAndImage, searchResult)
