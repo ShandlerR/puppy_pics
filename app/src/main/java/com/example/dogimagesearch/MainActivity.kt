@@ -83,7 +83,8 @@ fun DogImageSearch(imageDirectory: Map<String, List<Int>>,modifier: Modifier = M
         modifier = modifier
             .fillMaxSize()
             .padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
             Surface(
